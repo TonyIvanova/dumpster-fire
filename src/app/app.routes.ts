@@ -6,7 +6,7 @@ import { NotesList } from './notes/notes-list';
 import { Write } from './write/write';
 
 export const routes: Routes = [
-  { path: '', component: Home, title: 'Dumpster Fire' },
+  { path: '', component: Home, title: 'Dump' },
   {
     path: 'write',
     component: Write,

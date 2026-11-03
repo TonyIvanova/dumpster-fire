@@ -23,6 +23,7 @@ export class Home {
   protected readonly grace = signal<number | null>(this.saved.grace);
   protected readonly hardcore = signal(this.saved.hardcore);
   protected readonly autocorrect = signal(this.saved.autocorrect);
+  protected readonly prompt = signal(this.saved.prompt);
 
   protected start(): void {
     this.store.updateSettings({
@@ -30,6 +31,7 @@ export class Home {
       grace: clamp(this.grace(), 2, 60, this.saved.grace),
       hardcore: this.hardcore(),
       autocorrect: this.autocorrect(),
+      prompt: this.prompt(),
     });
     this.router.navigate(['/write']);
   }

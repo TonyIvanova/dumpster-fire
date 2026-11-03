@@ -5,7 +5,7 @@ import { NotesStore } from './notes-store';
 
 // drive.file only reaches files this app created, never the rest of your Drive.
 const SCOPE = 'https://www.googleapis.com/auth/drive.file';
-const FOLDER_NAME = 'Dumpster Fire';
+const FOLDER_NAME = 'Dump';
 const DOC_MIME = 'application/vnd.google-apps.document';
 const FOLDER_MIME = 'application/vnd.google-apps.folder';
 const DRIVE = 'https://www.googleapis.com/drive/v3/files';

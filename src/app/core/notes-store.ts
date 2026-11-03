@@ -12,6 +12,7 @@ export interface Settings {
   grace: number;
   hardcore: boolean;
   autocorrect: boolean;
+  prompt: boolean;
   theme: Theme;
   googleConnected: boolean;
   googleFolderId: string | null;
@@ -22,6 +23,7 @@ const DEFAULTS: Settings = {
   grace: 5,
   hardcore: false,
   autocorrect: true,
+  prompt: false,
   theme: 'beige',
   googleConnected: false,
   googleFolderId: null,
@@ -91,7 +93,7 @@ export class NotesStore {
 
   exportJson(): string {
     return JSON.stringify(
-      { app: 'dumpster-fire', version: 1, exportedAt: new Date().toISOString(), notes: this.notes() },
+      { app: 'dump', version: 1, exportedAt: new Date().toISOString(), notes: this.notes() },
       null,
       2,
     );

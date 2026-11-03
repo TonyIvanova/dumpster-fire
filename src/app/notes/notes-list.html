@@ -4,6 +4,26 @@
     <span class="muted">{{ total() }}</span>
   </div>
 
+  <figure class="picture">
+    <div class="tiles" role="img" [attr.aria-label]="pictureCaption() + ' squares filled'">
+      @for (tile of picture().tiles; track tile.key) {
+        @if (tile.note; as note) {
+          <a
+            class="tile"
+            tabindex="-1"
+            [class.newest]="tile.newest"
+            [style.background-color]="tile.color"
+            [title]="titleOf(note.text)"
+            [routerLink]="['/notes', note.id]"
+          ></a>
+        } @else {
+          <span class="tile empty"></span>
+        }
+      }
+    </div>
+    <figcaption class="muted">{{ pictureCaption() }}</figcaption>
+  </figure>
+
   @if (notes().length) {
     <ul class="list">
       @for (note of notes(); track note.id) {

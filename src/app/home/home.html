@@ -6,7 +6,7 @@
     width="148"
     height="148"
   />
-  <h1>Dumpster Fire</h1>
+  <h1>Dump</h1>
   <form class="setup" autocomplete="off" (ngSubmit)="start()">
     <p>
       Write for
@@ -36,12 +36,17 @@
       />
       seconds and it burns.
     </p>
-    <label class="check">
-      <input type="checkbox" name="hardcore" [(ngModel)]="hardcore" /> Hardcore: no deleting
-    </label>
-    <label class="check">
-      <input type="checkbox" name="autocorrect" [(ngModel)]="autocorrect" /> Fix typos as I go
-    </label>
+    <div class="options">
+      <label class="check">
+        <input type="checkbox" name="hardcore" [(ngModel)]="hardcore" /> Hardcore: no deleting
+      </label>
+      <label class="check">
+        <input type="checkbox" name="autocorrect" [(ngModel)]="autocorrect" /> Fix typos as I go
+      </label>
+      <label class="check">
+        <input type="checkbox" name="prompt" [(ngModel)]="prompt" /> Give me a one-word prompt
+      </label>
+    </div>
     <button class="primary" type="submit">Start</button>
   </form>
   <a class="link" routerLink="/notes">Notes</a>

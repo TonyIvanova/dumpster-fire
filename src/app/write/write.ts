@@ -13,10 +13,12 @@ import { GoogleDocs } from '../core/google-docs';
 import { wordCount } from '../core/note';
 import { NotesStore } from '../core/notes-store';
 import { Toast } from '../core/toast';
+import { Fire } from './fire';
+import { randomPrompt } from './prompts';
 
 const BOUNDARY = /[\s.,!?;:]/;
 const CONTEXT_LENGTH = 200;
-const BURN_MS = 700;
+const BURN_MS = 1100;
 const NAV_KEYS = new Set([
   'ArrowLeft',
   'ArrowRight',
@@ -35,6 +37,7 @@ function formatTime(ms: number): string {
 }
 
 @Component({
+  imports: [Fire],
   selector: 'app-write',
   styleUrl: './write.css',
   templateUrl: './write.html',
@@ -59,13 +62,14 @@ export class Write implements OnDestroy {
 
   private pages: string[] = [];
   private previous = '';
-  private started = false;
   private active = true;
   private endsAt = 0;
   private lastInput = 0;
   private ticker?: ReturnType<typeof setInterval>;
   private burnTimer?: ReturnType<typeof setTimeout>;
 
+  protected readonly started = signal(false);
+  protected readonly prompt = signal(this.store.settings().prompt ? randomPrompt() : null);
   protected readonly clock = signal(formatTime(this.durationMs));
   protected readonly left = signal(1);
   protected readonly heat = signal(0);
@@ -90,12 +94,12 @@ export class Write implements OnDestroy {
 
   // The browser's back button shouldn't burn a page by accident.
   canLeave(): boolean {
-    if (!this.active || !this.started) return true;
+    if (!this.active || !this.started()) return true;
     return window.confirm('Leave now and this burns.');
   }
 
   protected warnBeforeUnload(event: BeforeUnloadEvent): void {
-    if (this.active && this.started) event.preventDefault();
+    if (this.active && this.started()) event.preventDefault();
   }
 
   protected onKeydown(event: KeyboardEvent): void {
@@ -136,8 +140,8 @@ export class Write implements OnDestroy {
     }
 
     const now = Date.now();
-    if (!this.started) {
-      this.started = true;
+    if (!this.started()) {
+      this.started.set(true);
       this.endsAt = now + this.durationMs;
       this.ticker = setInterval(() => this.tick(), 100);
       this.hint.set('');
@@ -173,9 +177,14 @@ export class Write implements OnDestroy {
     if (this.active && !(event.target instanceof HTMLButtonElement)) this.page.focus();
   }
 
+  protected anotherPrompt(): void {
+    this.prompt.update((word) => randomPrompt(word ?? undefined));
+    this.page.focus();
+  }
+
   protected giveUp(): void {
     if (!this.active) return;
-    if (this.started) {
+    if (this.started()) {
       this.burn();
     } else {
       this.active = false;

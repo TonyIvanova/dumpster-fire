@@ -1,4 +1,4 @@
-# Dumpster Fire
+# Dump
 
 Keep typing or it burns. Pick a time, start writing, and if you stop for too long your text is gone. Make it to the end and the note is saved, ready to edit.
 
@@ -6,6 +6,7 @@ Keep typing or it burns. Pick a time, start writing, and if you stop for too lon
 - Small pages that turn over as you write, with a page counter
 - No red squiggles, and optional typo fixes as you go (offline, while writing only)
 - Beige, light and dark backgrounds
+- A 25×25 picture on the notes page that fills in by one square for each finished note
 - Backups: download or restore a JSON file, or sync to Google Docs
 
 Built with Angular. It's frontend only, with no server.
@@ -28,10 +29,10 @@ npm test
 
 ## Deploy to GitHub Pages
 
-The workflow in `.github/workflows/deploy.yml` tests, builds and deploys every push to `main`.
+The workflow in `.github/workflows/deploy.yml` tests and builds every push to `main`, then publishes the result to the `gh-pages` branch.
 
 1. Push this folder as the root of a GitHub repository, on the `main` branch.
-2. In the repository, go to Settings > Pages and set Source to **GitHub Actions**.
+2. After the first run, go to Settings > Pages in the repository and check that the source is **Deploy from a branch**, using `gh-pages`.
 
 The build uses a relative base path and hash URLs, so it works under any repository name and reloads don't return a 404.
 
@@ -46,7 +47,7 @@ The app needs an OAuth Client ID, which is public and safe to commit. Without on
 5. Paste the ID into `src/app/config.ts` and push.
 6. In the app, go to Notes and choose **Connect Google Docs**.
 
-Each note becomes a Google Doc in a `Dumpster Fire` folder in your Drive. The app can only see files it created.
+Each note becomes a Google Doc in a `Dump` folder in your Drive. The app can only see files it created.
 
 ### Limits
 

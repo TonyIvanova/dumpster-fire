@@ -1,0 +1,13 @@
+/* Taller than the page, so at full heat the flames lick over its top edge. */
+:host {
+  position: absolute;
+  inset: -16% 0 0 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}

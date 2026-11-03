@@ -5,6 +5,7 @@ import { GoogleDocs } from '../core/google-docs';
 import { Note, download, plural, titleOf, wordCount } from '../core/note';
 import { NotesStore } from '../core/notes-store';
 import { Toast } from '../core/toast';
+import { PICTURE_TILES, buildPicture } from './picture';
 
 @Component({
   imports: [DatePipe, RouterLink],
@@ -28,6 +29,14 @@ export class NotesList {
     return `${plural(notes.length, 'note')}, ${plural(pages, 'page')}`;
   });
 
+  protected readonly picture = computed(() => buildPicture(this.notes()));
+  protected readonly pictureCaption = computed(() => {
+    const { filled, round } = this.picture();
+    if (filled === PICTURE_TILES) return `Picture ${round} finished. ${PICTURE_TILES} notes.`;
+    const progress = `${filled} of ${PICTURE_TILES}`;
+    return round > 1 ? `Picture ${round}: ${progress}` : progress;
+  });
+
   protected readonly googleStatus = signal('');
   // Bumped after connecting and disconnecting, which the token's expiry check can't see on its own.
   private readonly googleChanged = signal(0);
@@ -47,7 +56,7 @@ export class NotesList {
 
   protected exportAll(): void {
     const day = new Date().toISOString().slice(0, 10);
-    download(`dumpster-fire-${day}.json`, 'application/json', this.store.exportJson());
+    download(`dump-${day}.json`, 'application/json', this.store.exportJson());
   }
 
   protected async importFile(input: HTMLInputElement): Promise<void> {
@@ -58,7 +67,7 @@ export class NotesList {
       const changed = this.store.importJson(await file.text());
       this.toast.show(`${plural(changed, 'note')} restored.`);
     } catch {
-      this.toast.show("That file doesn't look like a Dumpster Fire backup.");
+      this.toast.show("That file doesn't look like a Dump backup.");
     }
   }
 

@@ -13,7 +13,7 @@ describe('App', () => {
     const fixture = TestBed.createComponent(App);
     await TestBed.inject(Router).navigateByUrl('/');
     await fixture.whenStable();
-    expect(fixture.nativeElement.querySelector('h1').textContent).toContain('Dumpster Fire');
+    expect(fixture.nativeElement.querySelector('h1').textContent).toContain('Dump');
   });
 
   it('applies a chosen theme and remembers it', async () => {

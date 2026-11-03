@@ -1,7 +1,22 @@
 <section class="view write" (click)="refocus($event)">
   <div class="bar">
     <span class="tabular" role="timer">{{ clock() }}</span>
-    <span class="tabular">page {{ pageNumber() }}</span>
+    @if (prompt(); as word) {
+      @if (started()) {
+        <span class="prompt">{{ word }}</span>
+      } @else {
+        <button
+          class="prompt"
+          type="button"
+          title="Another word"
+          aria-label="{{ word }}. Choose another word"
+          (click)="anotherPrompt()"
+        >
+          {{ word }} <span class="again" aria-hidden="true">↻</span>
+        </button>
+      }
+    }
+    <span class="tabular page-count">page {{ pageNumber() }}</span>
   </div>
   <div class="progress" [style.--left]="left()"><span></span></div>
   <div
@@ -31,7 +46,7 @@
       (mouseup)="pinCaret()"
       (touchend)="pinCaret()"
     ></textarea>
-    <div class="fire" aria-hidden="true"></div>
+    <app-fire aria-hidden="true" [heat]="burning() ? 1.15 : heat()" />
   </div>
   <p class="hint">{{ hint() }}</p>
   <button class="link quiet" type="button" (click)="giveUp()">Give up</button>
