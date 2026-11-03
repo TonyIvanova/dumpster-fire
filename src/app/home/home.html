@@ -1,0 +1,48 @@
+<main class="view home">
+  <img
+    class="logo"
+    src="logo.svg"
+    alt="A skunk climbing out of a burning dumpster"
+    width="148"
+    height="148"
+  />
+  <h1>Dumpster Fire</h1>
+  <form class="setup" autocomplete="off" (ngSubmit)="start()">
+    <p>
+      Write for
+      <input
+        class="num"
+        type="number"
+        inputmode="numeric"
+        name="minutes"
+        min="1"
+        max="180"
+        aria-label="Minutes to write"
+        [(ngModel)]="minutes"
+      />
+      minutes.
+    </p>
+    <p>
+      Stop for
+      <input
+        class="num"
+        type="number"
+        inputmode="numeric"
+        name="grace"
+        min="2"
+        max="60"
+        aria-label="Seconds before it burns"
+        [(ngModel)]="grace"
+      />
+      seconds and it burns.
+    </p>
+    <label class="check">
+      <input type="checkbox" name="hardcore" [(ngModel)]="hardcore" /> Hardcore: no deleting
+    </label>
+    <label class="check">
+      <input type="checkbox" name="autocorrect" [(ngModel)]="autocorrect" /> Fix typos as I go
+    </label>
+    <button class="primary" type="submit">Start</button>
+  </form>
+  <a class="link" routerLink="/notes">Notes</a>
+</main>

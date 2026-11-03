@@ -1,0 +1,38 @@
+<section class="view write" (click)="refocus($event)">
+  <div class="bar">
+    <span class="tabular" role="timer">{{ clock() }}</span>
+    <span class="tabular">page {{ pageNumber() }}</span>
+  </div>
+  <div class="progress" [style.--left]="left()"><span></span></div>
+  <div
+    #sheet
+    class="sheet"
+    [class.burning]="burning()"
+    [style.--heat]="heat()"
+    [style.--sheets]="(pageNumber() - 1 > 6 ? 6 : pageNumber() - 1) * 2"
+  >
+    <textarea
+      #page
+      class="page-input"
+      spellcheck="false"
+      autocorrect="off"
+      autocapitalize="off"
+      autocomplete="off"
+      aria-label="Your page"
+      (keydown)="onKeydown($event)"
+      (beforeinput)="onBeforeInput($event)"
+      (input)="onInput($event)"
+      (compositionend)="onCompositionEnd()"
+      (paste)="blockTransfer($event)"
+      (drop)="blockTransfer($event)"
+      (cut)="blockTransfer($event)"
+      (click)="pinCaret()"
+      (select)="pinCaret()"
+      (mouseup)="pinCaret()"
+      (touchend)="pinCaret()"
+    ></textarea>
+    <div class="fire" aria-hidden="true"></div>
+  </div>
+  <p class="hint">{{ hint() }}</p>
+  <button class="link quiet" type="button" (click)="giveUp()">Give up</button>
+</section>

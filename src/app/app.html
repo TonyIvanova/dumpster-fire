@@ -1,0 +1,17 @@
+<router-outlet />
+
+<div class="themes" role="group" aria-label="Background">
+  @for (option of themes; track option.id) {
+    <button
+      type="button"
+      [class]="option.id"
+      [attr.aria-label]="option.label"
+      [attr.aria-pressed]="theme() === option.id"
+      (click)="setTheme(option.id)"
+    ></button>
+  }
+</div>
+
+@if (toast.message(); as message) {
+  <div class="toast" role="status">{{ message }}</div>
+}

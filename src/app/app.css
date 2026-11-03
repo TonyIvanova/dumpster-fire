@@ -1,0 +1,38 @@
+.themes {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  display: flex;
+  gap: 8px;
+}
+.themes button {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid var(--muted);
+  cursor: pointer;
+}
+.themes .beige { background: #efe6d2; }
+.themes .light { background: #ffffff; }
+.themes .dark { background: #0d1117; }
+.themes [aria-pressed='true'] {
+  outline: 1px solid var(--ink);
+  outline-offset: 2px;
+}
+:host-context(body.writing) .themes { display: none; }
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 20px;
+  transform: translateX(-50%);
+  max-width: calc(100vw - 32px);
+  background: var(--ink);
+  color: var(--bg);
+  padding: 4px 14px;
+  border-radius: 2px;
+  font-size: 0.9rem;
+  text-align: center;
+}

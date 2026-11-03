@@ -1,0 +1,21 @@
+.editor { gap: 14px; }
+
+.sheet {
+  height: auto;
+  overflow: visible;
+}
+.page-input { min-height: calc(14 * 1.7em + 56px); }
+
+.meta {
+  color: var(--muted);
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.meta a { color: inherit; }
+.meta .link { color: var(--ink); }
+
+@media (max-width: 480px) {
+  .sheet { height: auto; }
+}

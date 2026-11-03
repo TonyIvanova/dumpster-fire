@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en" data-theme="beige">
+  <head>
+    <meta charset="utf-8" />
+    <title>Dumpster Fire</title>
+    <!-- Relative, so the build works from any GitHub Pages path. -->
+    <base href="./" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Keep typing or it burns. A timed writing sprint that saves your note when you make it."
+    />
+    <link rel="icon" href="logo.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap"
+    />
+    <script>
+      try {
+        const saved = JSON.parse(localStorage.getItem('df.settings') || '{}').theme;
+        if (saved) document.documentElement.dataset.theme = saved;
+      } catch {}
+    </script>
+  </head>
+  <body>
+    <app-root></app-root>
+  </body>
+</html>

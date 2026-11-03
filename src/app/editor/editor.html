@@ -1,0 +1,47 @@
+<section class="view editor">
+  <div class="bar">
+    <a class="link" routerLink="/notes">Notes</a>
+    <span>
+      <button class="link" type="button" (click)="downloadNote()">Download</button>
+      <a class="link" routerLink="/">New</a>
+    </span>
+  </div>
+  <div class="sheet">
+    <textarea
+      #text
+      class="page-input"
+      spellcheck="false"
+      aria-label="Your note"
+      (input)="onInput(text)"
+    ></textarea>
+  </div>
+  <p class="meta">
+    <span>{{ words() }}</span>
+    <span>
+      @switch (syncState()) {
+        @case ('linked') {
+          <a [href]="docUrl()" target="_blank" rel="noopener">Backed up to Google Docs</a>
+        }
+        @case ('pending') {
+          Backing up…
+        }
+        @case ('reconnect') {
+          Saved in this browser.
+          <button class="link" type="button" [disabled]="reconnecting()" (click)="reconnect()">
+            Reconnect Google to back up
+          </button>
+        }
+        @case ('error') {
+          Saved in this browser. {{ syncError() }}
+          <button class="link" type="button" [disabled]="reconnecting()" (click)="reconnect()">
+            Try again
+          </button>
+        }
+        @default {
+          Saved in this browser
+        }
+      }
+    </span>
+  </p>
+  <button class="link quiet" type="button" (click)="deleteNote()">Delete note</button>
+</section>

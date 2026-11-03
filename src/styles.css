@@ -1,0 +1,144 @@
+:root,
+[data-theme='beige'] {
+  --bg: #efe6d2;
+  --sheet: #f8f1e0;
+  --ink: #38301f;
+  --muted: #7a6d55;
+  --line: #d9ccb0;
+  --accent: #9a3412;
+  --fire: #d9480f;
+  color-scheme: light;
+}
+
+/* GitHub Primer light */
+[data-theme='light'] {
+  --bg: #f6f8fa;
+  --sheet: #ffffff;
+  --ink: #1f2328;
+  --muted: #59636e;
+  --line: #d1d9e0;
+  --accent: #0969da;
+  --fire: #cf222e;
+  color-scheme: light;
+}
+
+/* GitHub Primer dark */
+[data-theme='dark'] {
+  --bg: #010409;
+  --sheet: #0d1117;
+  --ink: #f0f6fc;
+  --muted: #9198a1;
+  --line: #3d444d;
+  --accent: #4493f8;
+  --fire: #f85149;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 18px/1.7 'Courier Prime', 'Courier New', Courier, monospace;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+h1, h2 { font-weight: 400; margin: 0; }
+h1 { font-size: 1.75rem; line-height: 1.2; }
+h2 { font-size: 1rem; }
+p { margin: 0; }
+
+button, input { font: inherit; color: inherit; }
+
+.muted { color: var(--muted); }
+.tabular { font-variant-numeric: tabular-nums; }
+
+.view {
+  --column: min(34rem, 100vw - 32px);
+  width: var(--column);
+  margin: 0 auto;
+  min-height: 100dvh;
+  padding: 24px 0 72px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Buttons are just words until you point at them. */
+.link {
+  appearance: none;
+  background: none;
+  border: 0;
+  padding: 4px 0;
+  cursor: pointer;
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 4px;
+  transition: text-decoration-color 0.15s, color 0.15s;
+}
+.link:hover { text-decoration-color: currentColor; }
+.link + .link { margin-left: 16px; }
+.link.quiet { color: var(--muted); align-self: center; }
+.link[disabled] { color: var(--muted); cursor: default; }
+
+.primary {
+  appearance: none;
+  align-self: center;
+  background: none;
+  border: 1px solid var(--ink);
+  border-radius: 2px;
+  padding: 6px 28px;
+  color: var(--ink);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.15s, color 0.15s;
+}
+.primary:hover { background: var(--ink); color: var(--bg); }
+
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  color: var(--muted);
+}
+.bar .link { color: var(--muted); }
+.bar .link:hover { color: var(--ink); }
+
+/* Small on purpose: 14 lines, so a new page comes around often. */
+.sheet {
+  position: relative;
+  height: min(calc(14 * 1.7em + 56px), 62dvh);
+  background: var(--sheet);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.page-input {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 28px;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  resize: none;
+  overflow: hidden;
+  outline: none;
+  caret-color: var(--fire);
+}
+
+@media (max-width: 480px) {
+  .page-input { padding: 18px; }
+  .sheet { height: min(calc(14 * 1.7em + 36px), 56dvh); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}

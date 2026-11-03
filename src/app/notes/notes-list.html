@@ -1,0 +1,55 @@
+<section class="view notes">
+  <div class="bar">
+    <a class="link" routerLink="/">Back</a>
+    <span class="muted">{{ total() }}</span>
+  </div>
+
+  @if (notes().length) {
+    <ul class="list">
+      @for (note of notes(); track note.id) {
+        <li>
+          <a class="open" [routerLink]="['/notes', note.id]">
+            <span class="title">{{ titleOf(note.text) }}</span>
+            <span class="detail">{{ note.createdAt | date: 'mediumDate' }}, {{ wordsIn(note) }}</span>
+          </a>
+          <button
+            class="link delete"
+            type="button"
+            [attr.aria-label]="'Delete ' + titleOf(note.text)"
+            (click)="remove(note)"
+          >
+            Delete
+          </button>
+        </li>
+      }
+    </ul>
+  } @else {
+    <p class="muted empty">Nothing has survived yet.</p>
+  }
+
+  <div class="backup">
+    <h2>Backup</h2>
+    <p>
+      <button class="link" type="button" (click)="exportAll()">Download all</button>
+      <button class="link" type="button" (click)="file.click()">Restore a file</button>
+      <input
+        #file
+        type="file"
+        accept="application/json,.json"
+        hidden
+        (change)="importFile(file)"
+      />
+    </p>
+    @if (google.configured) {
+      <p>
+        <button class="link" type="button" (click)="toggleGoogle()">{{ connectLabel() }}</button>
+        @if (googleLive()) {
+          <button class="link" type="button" (click)="restoreFromGoogle()">
+            Restore from Google
+          </button>
+        }
+      </p>
+    }
+    <p class="muted" role="status">{{ googleStatus() }}</p>
+  </div>
+</section>

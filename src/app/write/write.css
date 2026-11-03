@@ -1,0 +1,76 @@
+.write {
+  justify-content: center;
+  gap: 10px;
+}
+
+.progress {
+  height: 1px;
+  background: var(--line);
+  margin-bottom: 18px;
+}
+.progress span {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: var(--ink);
+  transform: scaleX(var(--left, 1));
+  transform-origin: left;
+}
+
+.sheet {
+  --sheets: 0;
+  box-shadow:
+    calc(var(--sheets) * 1px) calc(var(--sheets) * 1px) 0 var(--sheet),
+    calc(var(--sheets) * 1px + 1px) calc(var(--sheets) * 1px + 1px) 0 var(--line);
+  overflow: visible;
+  transition: box-shadow 0.2s;
+}
+
+.page-input {
+  opacity: calc(1 - var(--heat, 0) * 0.9);
+}
+
+.fire {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: calc(var(--heat, 0) * 100%);
+  background: linear-gradient(to top, var(--fire), transparent);
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.sheet.turn .page-input {
+  animation: turn 0.22s ease-out;
+}
+@keyframes turn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.sheet.burning {
+  animation: burn 0.7s ease-in forwards;
+}
+.sheet.burning .fire {
+  height: 100%;
+  opacity: 0.9;
+}
+@keyframes burn {
+  to {
+    opacity: 0;
+    transform: translateY(14px) scale(0.97);
+    filter: blur(3px);
+  }
+}
+
+.hint {
+  text-align: center;
+  color: var(--muted);
+  margin-top: 12px;
+  min-height: 1.7em;
+}

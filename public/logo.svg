@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="A skunk climbing out of a burning dumpster">
+  <!-- flames -->
+  <path d="M14 76C8 58 16 48 22 38c1 8 5 11 9 12 0-14 7-24 19-34-2 11 3 17 8 22 2-5 3-8 3-14 9 7 14 16 15 25 4-5 5-9 5-15 11 9 17 19 18 30 3-3 5-6 6-10 8 10 10 21 6 32z" fill="#e8590c"/>
+  <path d="M28 76c-4-11 1-18 6-24 1 5 3 7 6 8 1-9 5-16 12-22 0 7 3 11 6 14 2-3 3-6 3-10 7 6 10 12 11 18 3-3 4-6 4-10 7 6 11 13 12 20 2-2 3-4 4-6 3 5 4 9 3 12z" fill="#fcc419"/>
+
+  <!-- skunk tail -->
+  <path d="M86 78c-4-8 0-14 5-20 5-7 7-14 2-22 11 3 18 13 16 25-1 8-5 14-11 18z" fill="#212529" stroke="#f8f9fa" stroke-width="1.5"/>
+  <path d="M95 74c-1-6 2-11 5-17 2-5 2-9 1-13 5 5 6 12 4 18-1 5-4 9-7 12z" fill="#f8f9fa"/>
+
+  <!-- skunk head -->
+  <path d="M33 46l3-13 9 9z" fill="#212529" stroke="#f8f9fa" stroke-width="1.5" stroke-linejoin="round"/>
+  <path d="M71 46l-3-13-9 9z" fill="#212529" stroke="#f8f9fa" stroke-width="1.5" stroke-linejoin="round"/>
+  <path d="M28 62c0-14 10-24 24-24s24 10 24 24c0 8-5 12-11 15-5 3-9 7-13 7s-8-4-13-7c-6-3-11-7-11-15z" fill="#212529" stroke="#f8f9fa" stroke-width="1.5"/>
+  <path d="M47 38.500c3-.7 7-.7 10 0l-1.500 22c-1 3-6 3-7 0z" fill="#f8f9fa"/>
+  <ellipse cx="40" cy="60" rx="4.500" ry="5.500" fill="#f8f9fa"/>
+  <ellipse cx="64" cy="60" rx="4.500" ry="5.500" fill="#f8f9fa"/>
+  <circle cx="41" cy="61" r="2.400" fill="#212529"/>
+  <circle cx="63" cy="61" r="2.400" fill="#212529"/>
+  <path d="M48 72c1.500-1.500 6.500-1.500 8 0 .5 2-2.500 4.500-4 4.500s-4.500-2.500-4-4.500z" fill="#f783ac"/>
+
+  <!-- paws on the rim -->
+  <ellipse cx="27" cy="80" rx="6" ry="5" fill="#212529" stroke="#f8f9fa" stroke-width="1.5"/>
+  <ellipse cx="77" cy="80" rx="6" ry="5" fill="#212529" stroke="#f8f9fa" stroke-width="1.5"/>
+
+  <!-- dumpster -->
+  <path d="M8 82h112l-9 38H17z" fill="#2f6f4f"/>
+  <path d="M4 78h120a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2z" fill="#1f4d36"/>
+  <g stroke="#1f4d36" stroke-width="3" stroke-linecap="round">
+    <path d="M36 91l2 22M64 91v22M92 91l-2 22"/>
+  </g>
+  <circle cx="26" cy="123" r="4" fill="#495057"/>
+  <circle cx="102" cy="123" r="4" fill="#495057"/>
+</svg>
